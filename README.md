@@ -1,6 +1,6 @@
 # shapenet
 
-This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper](#our-paper)
+This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper](#our-paper).
 
 ## Contents
 * [Installation](#installation)
@@ -60,4 +60,5 @@ For these Networks the image size is fixed to 224 and the pretrained weights can
 
 
 ## Our Paper
+If you use our Code for your own research, please cite our paper:
 **Coming Soon**
