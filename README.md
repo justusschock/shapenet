@@ -54,7 +54,10 @@ The `utils` subpackage contains everything that did not suit into the scope of a
 The `scripts` subpackage contains all scipts described in [Scripts](#by-scripts) and their helper functions.
 
 ### Pretrained Weights
-**Coming Soon**
+Currently Pretrained Weights are available for [grayscale faces](https://drive.google.com/file/d/1QS2GUZK9xKWvpbDYgUCc-m0qI60TMnLj/view?usp=sharing) and [cats](https://drive.google.com/file/d/13S-4vLmmUBNy2XKJl_yR1u7Z283Iu1zB/view?usp=sharing).
+
+For these Networks the image size is fixed to 224 and the pretrained weights can be loaded via `torch.jit.load("PATH/TO/NETWORK/FILE.ptj")`. The inputs have to be of type `torch.Tensor` with dtype `torch.float` in shape (BATCH_SIZE, 1, 224, 224) and normalized in a range between (0, 1).
+
 
 ## Our Paper
 **Coming Soon**
