@@ -1,5 +1,5 @@
-from shapenet.jit.homogeneous_shape_layer import HomogeneousShapeLayer
-from shapenet.jit.shape_network import ShapeNetwork
+from ..jit.homogeneous_shape_layer import HomogeneousShapeLayer
+from ..jit.shape_network import ShapeNetwork
 import torch
 import argparse
 import numpy as np
