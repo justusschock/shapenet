@@ -1,0 +1,4 @@
+include LICENSE
+include example_configs/*
+include *.md
+include *.txt
