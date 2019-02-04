@@ -8,9 +8,9 @@ def train_shapenet():
     import torch
     from shapedata.single_shape import SingleShapeDataset
     from delira.training import PyTorchNetworkTrainer
-    from shapenet.utils import Config
-    from shapenet.layer import HomogeneousShapeLayer
-    from shapenet.networks import SingleShapeNetwork
+    from ..utils import Config
+    from ..layer import HomogeneousShapeLayer
+    from ..networks import SingleShapeNetwork
     from delira.logging import TrixiHandler
     from trixi.logger import PytorchVisdomLogger
     from delira.training.callbacks import ReduceLROnPlateauCallbackPyTorch
