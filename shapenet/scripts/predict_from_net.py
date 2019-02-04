@@ -5,9 +5,9 @@ def predict():
     from tqdm import tqdm
     import os
     from matplotlib import pyplot as plt
-    from shapenet.utils import Config
-    from shapenet.layer import HomogeneousShapeLayer
-    from shapenet.networks import SingleShapeNetwork
+    from ..utils import Config
+    from ..layer import HomogeneousShapeLayer
+    from ..networks import SingleShapeNetwork
     from shapedata.single_shape import SingleShapeDataProcessing, \
                                         SingleShapeSingleImage2D
     from shapedata.io import pts_exporter
