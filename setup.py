@@ -1,41 +1,60 @@
-from setuptools import find_packages, setup
+from setuptools import setup, find_packages
 
-curr_version = '0.1.0'
+import os
+import re
+
+def resolve_requirements(file):
+    requirements = []
+    with open(file) as f:
+        req = f.read().splitlines()
+        for r in req:
+            if r.startswith("-r"):
+                requirements += resolve_requirements(
+                    os.path.join(os.path.dirname(file), r.split(" ")[1]))
+            else:
+                requirements.append(r)
+    return requirements
+
+
+def read_file(file):
+    with open(file) as f:
+        content = f.read()
+    return content
+
+
+def find_version(file):
+    content = read_file(file)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", content,
+                              re.M)
+    if version_match:
+        return version_match.group(1)
+
+requirements = resolve_requirements(os.path.join(os.path.dirname(__file__),
+                                                 'requirements.txt'))
+
+readme = read_file(os.path.join(os.path.dirname(__file__), "README.md"))
+license = read_file(os.path.join(os.path.dirname(__file__), "LICENSE"))
+shapenet_version = find_version(os.path.join(os.path.dirname(__file__), "shapenet",
+                                           "__init__.py"))
 
 setup(
     name='shapenet',
-    version=curr_version,
+    version=shapenet_version,
     packages=find_packages(),
-    url='https://github.com/justusschock/shapenet',
-    license='MIT',
+    url='https://github.com/justussschock/shapenet',
     author='Justus Schock',
     author_email='justus.schock@rwth-aachen.de',
-    install_requires=["pyyaml",
-                      "torch>=1.0",
-                      "torchvision",
-                      "visdom",
-                      "kaggle",
-                      "shapedata@git+https://github.com/justusschock/shapedata.git#egg=shapedata-0.1",
-                      "delira@git+https://github.com/justusschock/delira.git#egg=delira-0."],
-    python_requires=">3.5",
     description='',
-    entry_points={
-        'console_scripts': [
-            'export_to_jit=shapenet.scripts.export_to_jit:main',
-            'predict_from_net=shapenet.scripts.predict_from_net:predict',
-            "prepare_all_data=shapenet.scripts.prepare_datasets:prepare_all_data",
-            "prepare_cat_dset=shapenet.scripts.prepare_datasets:prepare_cat_dset",
-            "prepare_helen_dset=shapenet.scripts.prepare_datasets:prepare_helen_dset",
-            "prepare_lfpw_dset=shapenet.scripts.prepare_datasets:prepare_lfpw_dset",
-            "train_shapenet=shapenet.scripts.train_single_shapenet:train_shapenet",
-        ],
-    },
+    test_suite="pytest",
+    long_description=readme,
+    license=license,
+    install_requires=requirements,
+    tests_require=["pytest-cov"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Intended Audience :: Education",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
