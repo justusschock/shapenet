@@ -1,6 +1,3 @@
-from shapenet.layer import HomogeneousShapeLayer
-from shapenet.networks import SingleShapeNetwork
-
 from shapenet.jit import JitHomogeneousShapeLayer
 from shapenet.jit import JitShapeNetwork
 
