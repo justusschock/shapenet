@@ -1,5 +1,5 @@
-from ..jit.homogeneous_shape_layer import HomogeneousShapeLayer
-from ..jit.shape_network import ShapeNetwork
+from ..jit import JitHomogeneousShapeLayer
+from ..jit import JitShapeNetwork
 import torch
 import argparse
 import numpy as np
@@ -11,7 +11,7 @@ def create_jit_net_from_config_and_weight(config_dict, weight_file):
         config_dict["layer"].pop("pca_path"))
     )["shapes"][:config_dict["layer"].pop("num_shape_params") + 1]
 
-    net = ShapeNetwork(HomogeneousShapeLayer, {
+    net = JitShapeNetwork(JitHomogeneousShapeLayer, {
         "shapes": shapes,
         "n_dims": config_dict["layer"]["n_dims"],
         "use_cpp": False})

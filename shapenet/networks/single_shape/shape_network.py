@@ -14,12 +14,12 @@ class ShapeNetwork(AbstractShapeNetwork):
     """
     Network to Predict a single shape
     """
+
     def __init__(self, layer_cls,
                  layer_kwargs,
                  in_channels=1,
                  norm_type='instance',
                  img_size=224,
-                 tiny=False,
                  feature_extractor=None,
                  **kwargs
                  ):
@@ -47,7 +47,6 @@ class ShapeNetwork(AbstractShapeNetwork):
                          in_channels=in_channels,
                          norm_type=norm_type,
                          img_size=img_size,
-                         tiny=tiny,
                          feature_extractor=feature_extractor,
                          **kwargs)
         self._kwargs = kwargs
@@ -257,4 +256,3 @@ class ShapeNetwork(AbstractShapeNetwork):
                                     }})
 
         return metric_vals, loss_vals, [preds]
-
