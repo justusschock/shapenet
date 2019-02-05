@@ -1,6 +1,6 @@
 # shapenet
 
-[![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet)
+[![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet) [![codecov](https://codecov.io/gh/justusschock/shapenet/branch/master/graph/badge.svg?token=gpwVgQjw18)](https://codecov.io/gh/justusschock/shapenet) ![LICENSE](https://img.shields.io/github/license/justusschock/shapedata.svg)
 
 This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper](#our-paper).
 
