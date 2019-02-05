@@ -1,3 +1,5 @@
 delira[torch]
 shapedata
 ninja
+kaggle
+pandas

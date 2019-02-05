@@ -13,6 +13,23 @@ import numpy as np
 
 
 def _make_pca(data_dir, out_file, normalize_rot=False, rotation_idxs=()):
+    """
+    Creates a PCA from data in a given directory
+    
+    Parameters
+    ----------
+    data_dir : str
+        directory containing the image and landmark files
+    out_file : str
+        file the pca will be saved to
+    normalize_rot : bool, optional
+        whether or not to normalize the data's rotation
+    rotation_idxs : tuple, optional
+        indices for rotation normalization, msut be specified if 
+        ``normalize_rot=True``
+    
+    """
+
     data_dir = os.path.abspath(data_dir)
     out_file = os.path.abspath(out_file)
 
@@ -35,6 +52,18 @@ def _make_pca(data_dir, out_file, normalize_rot=False, rotation_idxs=()):
 
 
 def _process_single_cat_file(file, target_dir):
+    """
+    Processes a single file of the cat dataset
+    
+    Parameters
+    ----------
+    file : str
+        the file to process
+    target_dir : str
+        the target directory
+    
+    """
+
     file = os.path.abspath(file)
     target_dir = os.path.abspath(target_dir)
 
@@ -56,6 +85,24 @@ def _process_single_cat_file(file, target_dir):
 
 def _prepare_cats(out_dir, remove_zip=False, normalize_pca_rot=False,
                   **split_options):
+    """
+    Prepares the cat dataset (with multiprocessing)
+    
+    Parameters
+    ----------
+    out_dir : str
+        the output directory
+    remove_zip : bool, optional
+        whether or not to remove the ZIP file after finishing the preparation
+    normalize_pca_rot : bool, optional
+        whether or not to normalize the data's rotation during PCA
+
+    See Also
+    --------
+    `Cat Dataset <https://www.kaggle.com/crawford/cat-dataset>`_
+    
+    """
+
 
     out_dir = os.path.abspath(out_dir)
 
@@ -117,6 +164,27 @@ def _prepare_cats(out_dir, remove_zip=False, normalize_pca_rot=False,
 
 def _prepare_ibug_dset(zip_file, dset_name, out_dir, remove_zip=False,
                        normalize_pca_rot=True):
+    """
+    Prepares an ibug dataset (from a given zipfile)
+    
+    Parameters
+    ----------
+    zip_file : str
+        the zip archive containing the data
+    dset_name : str
+        the dataset's name
+    out_dir : str
+        the output directory
+    remove_zip : bool, optional
+        whether or not to remove the ZIP file after finishing the preparation
+    normalize_pca_rot : bool, optional
+        whether or not to normalize the data's rotation during PCA
+
+    See Also
+    --------
+    `iBug Datasets <https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/>`_
+    
+    """
 
     zip_file = os.path.abspath(zip_file)
     out_dir = os.path.abspath(out_dir)
@@ -138,6 +206,17 @@ def _prepare_ibug_dset(zip_file, dset_name, out_dir, remove_zip=False,
 
 
 def prepare_lfpw_dset():
+    """
+    Prepares the LFPW Dataset from commandline arguments
+
+    See Also
+    --------
+    :meth:`_prepare_ibug_dset`
+    `iBug Datasets <https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/>`_
+    `LFPW Dataset <https://neerajkumar.org/databases/lfpw/>`_
+    
+    """
+
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--zip_file", type=str,
@@ -160,6 +239,16 @@ def prepare_lfpw_dset():
 
 
 def prepare_helen_dset():
+    """
+    Prepares the HELEN Dataset from commandline arguments
+
+    See Also
+    --------
+    :meth:`_prepare_ibug_dset`
+    `iBug Datasets <https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/>`_
+    `HELEN Dataset <http://www.ifp.illinois.edu/~vuongle2/helen/>`_
+
+    """
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--zip_file", type=str,
@@ -182,6 +271,15 @@ def prepare_helen_dset():
 
 
 def prepare_cat_dset():
+    """
+    Prepares the Cat Dataset from commandline arguments
+    
+    See Also
+    --------
+    :meth:`_prepare_cats`
+    `Cat Dataset <https://www.kaggle.com/crawford/cat-dataset>`_
+
+    """
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--ddir", type=str,
@@ -216,6 +314,15 @@ def prepare_cat_dset():
 
 
 def prepare_all_data():
+    """
+    Prepares all Datasets from commandline arguments
+
+    See Also
+    --------
+    :meth:`_prepare_ibug_dset`
+    :meth:`_prepare_cats`
+    
+    """
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--lfpw", action="store_true",

@@ -2,7 +2,7 @@
 
 import torch
 from .shape_layer import ShapeLayer
-from .homogenous_transform_layer import HomogeneousTransformationLayer
+from .homogeneous_transform_layer import HomogeneousTransformationLayer
 
 
 class HomogeneousShapeLayer(torch.jit.ScriptModule):
@@ -48,12 +48,12 @@ class HomogeneousShapeLayer(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        params : torch.Tensor
+        params : :class:`torch.Tensor`
             input parameters
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             predicted shape
 
         """

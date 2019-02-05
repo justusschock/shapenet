@@ -1,5 +1,10 @@
 
 def predict():
+    """
+    Predicts file directory with network specified by files to output path
+    
+    """
+
     import numpy as np
     import torch
     from tqdm import tqdm

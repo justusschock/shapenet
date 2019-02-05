@@ -9,4 +9,4 @@ __version__ = '0.1.0'
 
 from .homogeneous_shape_layer import HomogeneousShapeLayer
 from .shape_layer import ShapeLayer
-from .homogenous_transform_layer import HomogeneousTransformationLayer
+from .homogeneous_transform_layer import HomogeneousTransformationLayer

@@ -37,7 +37,7 @@ class HomogeneousTransformationLayer(torch.nn.Module):
         if use_cpp:
             self._layer = _HomogeneousTransformationLayerCpp(n_dims)
         else:
-            self._layer = _HomogenousTransformationLayerPy(n_dims)
+            self._layer = _HomogeneousTransformationLayerPy(n_dims)
 
         total_params = 0
         for key, val in self._n_params.items():
@@ -52,14 +52,14 @@ class HomogeneousTransformationLayer(torch.nn.Module):
 
         Parameters
         ----------
-        shapes : torch.Tensor
+        shapes : :class:`torch.Tensor`
             shapes before applied global transformation
-        params : torch.Tensor
+        params : :class:`torch.Tensor`
             parameters specifying the global transformation
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             Transformed shapes
 
         """
@@ -126,19 +126,19 @@ class _HomogeneousTransformationLayerCpp(torch.nn.Module):
 
         Parameters
         ----------
-        shapes : torch.Tensor
+        shapes : :class:`torch.Tensor`
             shapes to transform
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one per DoF)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (one per dimension)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             the transformed shapes in cartesian coordinates
 
         """
@@ -153,7 +153,7 @@ class _HomogeneousTransformationLayerCpp(torch.nn.Module):
         return transformed_shapes
 
 
-class _HomogenousTransformationLayerPy(torch.nn.Module):
+class _HomogeneousTransformationLayerPy(torch.nn.Module):
     """
     Module to perform homogeneous transformations in 2D and 3D
     (Implemented in Python)
@@ -186,19 +186,19 @@ class _HomogenousTransformationLayerPy(torch.nn.Module):
 
         Parameters
         ----------
-        shapes : torch.Tensor
+        shapes : :class:`torch.Tensor`
             shapes to transform
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one per DoF)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (one per dimension)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             the transformed shapes in cartesian coordinates
 
         """
@@ -226,17 +226,17 @@ class _HomogenousTransformationLayerPy(torch.nn.Module):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one per DoF)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (one per dimension)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             transformation matrix
 
         """
@@ -264,17 +264,17 @@ class _HomogenousTransformationLayerPy(torch.nn.Module):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one parameter)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (two parameters)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor (one parameter)
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             2D transformation matrix
 
         """
@@ -307,17 +307,17 @@ class _HomogenousTransformationLayerPy(torch.nn.Module):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (three parameters)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (three parameters)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor (one parameter)
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             3D transformation matrix
 
         """
@@ -386,7 +386,7 @@ if __name__ == '__main__':
     scale_params_2d = torch.rand(10, 1, 1, 1)
 
     print("Creating Python Layer")
-    layer_2d_py = _HomogenousTransformationLayerPy(n_dims=2)
+    layer_2d_py = _HomogeneousTransformationLayerPy(n_dims=2)
     print("Creating Cpp shapelayer")
     layer_2d_cpp = _HomogeneousTransformationLayerCpp(n_dims=2)
 
@@ -402,7 +402,7 @@ if __name__ == '__main__':
     # translation_params_3d = torch.zeros(10, 3, 1, 1)
     scale_params_3d = torch.rand(10, 3, 1, 1)
 
-    layer_3d_py = _HomogenousTransformationLayerPy(n_dims=3)
+    layer_3d_py = _HomogeneousTransformationLayerPy(n_dims=3)
     layer_3d_cpp = _HomogeneousTransformationLayerCpp(n_dims=3)
 
     result_3d_py = layer_3d_py(shapes_3d, rotation_params_3d, translation_params_3d,

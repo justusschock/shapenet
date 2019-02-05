@@ -135,12 +135,12 @@ class ShapeNetwork(AbstractShapeNetwork):
 
         Parameters
         ----------
-        input_images : torch.Tensor
+        input_images : :class:`torch.Tensor`
             input batch
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             predicted shapes
 
         """
@@ -170,7 +170,7 @@ class ShapeNetwork(AbstractShapeNetwork):
 
         Parameters
         ----------
-        model : :class:`ClassificationNetworkBasePyTorch`
+        model : :class:`ShapeNetwork`
             trainable model
         data_dict : dict
             dictionary containing the data
@@ -183,7 +183,7 @@ class ShapeNetwork(AbstractShapeNetwork):
             dict holding the metrics to calculate
         fold : int
             Current Fold in Crossvalidation (default: 0)
-        **kwargs:
+        **kwargs :
             additional keyword arguments
 
         Returns
@@ -193,7 +193,8 @@ class ShapeNetwork(AbstractShapeNetwork):
         dict
             Loss values (with same keys as input dict criterions)
         list
-            Arbitrary number of predictions as torch.Tensor
+            Arbitrary number of predictions as :class:`torch.Tensor`
+
         Raises
         ------
         AssertionError

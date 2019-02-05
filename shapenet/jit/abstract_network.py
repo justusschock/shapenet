@@ -9,8 +9,9 @@ class AbstractShapeNetwork(torch.jit.ScriptModule):
     Abstract JIT Network
 
     """
+
     def __init__(self, **kwargs):
-      
+
         super().__init__(optimize=True)
 
     @staticmethod
@@ -29,6 +30,7 @@ class AbstractFeatureExtractor(torch.jit.ScriptModule):
     should be derived from
 
     """
+
     def __init__(self, in_channels, out_params, norm_class, p_dropout=0):
         """
 
@@ -55,12 +57,12 @@ class AbstractFeatureExtractor(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        input_batch : torch.Tensor
+        input_batch : :class:`torch.Tensor`
             batch to feed through network
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             extracted features
 
         """
@@ -85,7 +87,7 @@ class AbstractFeatureExtractor(torch.jit.ScriptModule):
 
         Returns
         -------
-        torch.nn.Module
+        :class:`torch.jit.ScriptModule`
             ensembled model
 
         """

@@ -7,7 +7,9 @@ from .abstract_network import AbstractFeatureExtractor
 class Conv2dRelu(torch.jit.ScriptModule):
     """
     Block holding one Conv2d and one ReLU layer
+    
     """
+
     def __init__(self, *args, **kwargs):
         """
 
@@ -30,12 +32,12 @@ class Conv2dRelu(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        input_batch : torch.Tensor
+        input_batch : class:`torch.Tensor`
             input batch
 
         Returns
         -------
-        torch.Tensor
+        class:`torch.Tensor`
             result
 
         """
@@ -61,7 +63,7 @@ class Img224x224Kernel7x7SeparatedDims(AbstractFeatureExtractor):
 
         Returns
         -------
-        torch.nn.Module
+        :class:`torch.jit.ScriptModule`
             ensembled model
 
         """

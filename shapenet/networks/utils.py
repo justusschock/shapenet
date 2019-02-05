@@ -27,12 +27,12 @@ class CustomGroupNorm(torch.nn.Module):
 
         Parameters
         ----------
-        x : torch.Tensor
+        x : :class:`torch.Tensor`
             batch to forward
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             normalized results
 
         """

@@ -18,6 +18,7 @@ class AbstractShapeNetwork(AbstractPyTorchNetwork):
         ----------
         **kwargs :
             keyword arguments (forwarded to parent class)
+
         """
         super().__init__(**kwargs)
 
@@ -34,7 +35,7 @@ class AbstractShapeNetwork(AbstractPyTorchNetwork):
         Returns
         -------
         type
-            Normalization Class (subclass of torch.nn.Module)
+            Normalization Class (subclass of :class:`torch.nn.Module`)
 
         """
         norm_dict = {'instance': torch.nn.InstanceNorm2d,
@@ -77,12 +78,12 @@ class AbstractFeatureExtractor(torch.nn.Module):
 
         Parameters
         ----------
-        input_batch : torch.Tensor
+        input_batch : :class:`torch.Tensor`
             batch to feed through network
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             exracted features
 
         """
@@ -107,7 +108,7 @@ class AbstractFeatureExtractor(torch.nn.Module):
 
         Returns
         -------
-        torch.nn.Module
+        :class:`torch.nn.Module`
             ensembled model
         """
         raise NotImplementedError

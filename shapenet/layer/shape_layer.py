@@ -34,12 +34,12 @@ class ShapeLayer(torch.nn.Module):
 
         Parameters
         ----------
-        shape_params : torch.Tensor
+        shape_params : :class:`torch.Tensor`
             parameters for shape ensembling
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             Ensempled Shape
 
         """
@@ -91,12 +91,12 @@ class _ShapeLayerPy(torch.nn.Module):
 
         Parameters
         ----------
-        shape_params : torch.Tensor
+        shape_params : :class:`torch.Tensor`
             shape parameters
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             ensembled shape
 
         """
@@ -164,12 +164,12 @@ class _ShapeLayerCpp(torch.nn.Module):
 
         Parameters
         ----------
-        shape_params : torch.Tensor
+        shape_params : :class:`torch.Tensor`
             shape parameters
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             ensembled shape
         """
 

@@ -38,6 +38,7 @@ class Config(object):
         -------
         dict
             configuration dict
+            
         """
         state_dict = {}
 

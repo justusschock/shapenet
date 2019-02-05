@@ -65,12 +65,12 @@ class _ShapeLayerPy(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        shape_params : torch.Tensor
+        shape_params : :class:`torch.Tensor`
             shape parameters
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             ensembled shape
 
         """

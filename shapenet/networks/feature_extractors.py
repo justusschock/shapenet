@@ -29,12 +29,12 @@ class Conv2dRelu(torch.nn.Module):
 
         Parameters
         ----------
-        input_batch : torch.Tensor
+        input_batch : :class:`torch.Tensor`
             input batch
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             result
         """
         return self._relu(self._conv(input_batch))
@@ -59,7 +59,7 @@ class Img224x224Kernel7x7SeparatedDims(AbstractFeatureExtractor):
 
         Returns
         -------
-        torch.nn.Module
+        :class:`torch.nn.Module`
             ensembled model
 
         """

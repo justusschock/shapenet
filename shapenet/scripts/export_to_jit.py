@@ -7,6 +7,23 @@ import os
 
 
 def create_jit_net_from_config_and_weight(config_dict, weight_file):
+    """
+    Creates a JIT Network from config dict and weight file
+    
+    Parameters
+    ----------
+    config_dict : dict
+        dict containing network configuration
+    weight_file : str
+        path to file containing weights
+    
+    Returns
+    -------
+    :class:`torch.jit.ScriptModule`
+        jitted network
+        
+    """
+
     shapes = np.load(os.path.abspath(
         config_dict["layer"].pop("pca_path"))
     )["shapes"][:config_dict["layer"].pop("num_shape_params") + 1]

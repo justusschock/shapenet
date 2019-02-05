@@ -2,6 +2,14 @@
 
 
 def train_shapenet():
+    """
+    Trains a single shapenet with config file from comandline arguments
+
+    See Also
+    --------
+    :class:`delira.training.PyTorchNetworkTrainer`
+    
+    """
 
     import logging
     import numpy as np
@@ -107,16 +115,17 @@ def train_shapenet():
         print("Data loaded")
     if config_dict["logging"].pop("enable", False):
         logger_cls = PytorchVisdomLogger
-        
+
         logging.basicConfig(level=logging.INFO,
                             handlers=[
-                                TrixiHandler(logger_cls, **config_dict["logging"])
+                                TrixiHandler(
+                                    logger_cls, **config_dict["logging"])
                             ])
 
     else:
         logging.basicConfig(level=logging.INFO,
                             handlers=[logging.NullHandler()])
-                            
+
     logger = logging.getLogger("Test Logger")
     logger.info("Start Training")
 
@@ -124,8 +133,8 @@ def train_shapenet():
         print("Start Training")
 
     trainer.train(config_dict["training"]["num_epochs"], mgr_train, mgr_val,
-                config_dict["training"]["val_score_key"],
-                val_score_mode='lowest')
+                  config_dict["training"]["val_score_key"],
+                  val_score_mode='lowest')
 
 
 if __name__ == '__main__':

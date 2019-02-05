@@ -1,7 +1,7 @@
-from shapenet.layer.homogenous_transform_layer import \
+from shapenet.layer.homogeneous_transform_layer import \
     HomogeneousTransformationLayer, \
     _HomogeneousTransformationLayerCpp, \
-    _HomogenousTransformationLayerPy
+    _HomogeneousTransformationLayerPy
 import torch
 
 
@@ -11,7 +11,7 @@ def test_homogeneous_transform_layer():
     translation_params_2d = torch.rand(10, 2, 1, 1, requires_grad=True)
     scale_params_2d = torch.rand(10, 1, 1, 1, requires_grad=True)
 
-    layer_2d_py = _HomogenousTransformationLayerPy(n_dims=2)
+    layer_2d_py = _HomogeneousTransformationLayerPy(n_dims=2)
     layer_2d_cpp = _HomogeneousTransformationLayerCpp(n_dims=2)
 
     result_2d_py = layer_2d_py(shapes_2d, rotation_params_2d,
@@ -60,7 +60,7 @@ def test_homogeneous_transform_layer():
     translation_params_3d = torch.rand(10, 3, 1, 1, requires_grad=True)
     scale_params_3d = torch.rand(10, 3, 1, 1, requires_grad=True)
 
-    layer_3d_py = _HomogenousTransformationLayerPy(n_dims=3)
+    layer_3d_py = _HomogeneousTransformationLayerPy(n_dims=3)
     layer_3d_cpp = _HomogeneousTransformationLayerCpp(n_dims=3)
 
     result_3d_py = layer_3d_py(shapes_3d, rotation_params_3d,

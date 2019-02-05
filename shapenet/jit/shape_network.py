@@ -31,11 +31,11 @@ class ShapeNetwork(AbstractShapeNetwork):
 
         Parameters
         ----------
-        layer_cls : type, subclass of ``torch.nn.Module``
+        layer_cls : type, subclass of :class:`torch.nn.Module`
             Class to instantiate the last layer (usually a shape-constrained
             or transformation layer)
         layer_kwargs : dict
-            keyword arguments to create an instance of `layer_cls`
+            keyword arguments to create an instance of ``layer_cls``
         in_channels : int
             number of input channels
         norm_type : str or None
@@ -132,12 +132,12 @@ class ShapeNetwork(AbstractShapeNetwork):
 
         Parameters
         ----------
-        input_images : torch.Tensor
+        input_images : :class:`torch.Tensor`
             input batch
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             predicted shapes
 
         """

@@ -42,7 +42,7 @@ class HomogeneousTransformationLayer(torch.jit.ScriptModule):
             self._n_params["rotation"] = 3
             self._n_params["translation"] = 3
 
-        self._layer = _HomogenousTransformationLayerPy(n_dims)
+        self._layer = _HomogeneousTransformationLayerPy(n_dims)
 
         total_params = 0
         for key, val in self._n_params.items():
@@ -53,6 +53,26 @@ class HomogeneousTransformationLayer(torch.jit.ScriptModule):
 
     @torch.jit.script_method
     def forward(self, shapes: torch.Tensor, params: torch.Tensor):
+        """
+        Selects individual parameters from ``params`` and forwards them through 
+        the actual layer implementation
+        
+        Parameters
+        ----------
+        shapes : :class:`torch.Tensor`
+            shapes to transform
+        params : :class:`torch.Tensor`
+            parameters specifying the affine transformation
+        
+        Returns
+        -------
+        Returns
+        -------
+        :class:`torch.Tensor`
+            the transformed shapes in cartesian coordinates
+
+        """
+
         rotation_params = params.index_select(
             dim=1, index=getattr(self, "_indices_rotation_params")
         )
@@ -75,7 +95,7 @@ class HomogeneousTransformationLayer(torch.jit.ScriptModule):
         return num_params
 
 
-class _HomogenousTransformationLayerPy(torch.jit.ScriptModule):
+class _HomogeneousTransformationLayerPy(torch.jit.ScriptModule):
     """
     Module to perform homogeneous transformations in 2D and 3D
     (Implemented in Python)
@@ -110,19 +130,19 @@ class _HomogenousTransformationLayerPy(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        shapes : torch.Tensor
+        shapes : :class:`torch.Tensor`
             shapes to transform
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one per DoF)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (one per dimension)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             the transformed shapes in cartesian coordinates
 
         """
@@ -154,17 +174,17 @@ class _HomogenousTransformationLayerPy(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one per DoF)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (one per dimension)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             transformation matrix
 
         """
@@ -192,17 +212,17 @@ class _HomogenousTransformationLayerPy(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (one parameter)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (two parameters)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor (one parameter)
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             2D transformation matrix
 
         """
@@ -236,17 +256,17 @@ class _HomogenousTransformationLayerPy(torch.jit.ScriptModule):
 
         Parameters
         ----------
-        rotation_params : torch.Tensor
+        rotation_params : :class:`torch.Tensor`
             parameters specifying the rotation (three parameters)
-        translation_params : torch.Tensor
+        translation_params : :class:`torch.Tensor`
             parameters specifying the translation (three parameters)
-        scale_params : torch.Tensor
+        scale_params : :class:`torch.Tensor`
             parameter specifying the global scaling factor (one parameter)
             (currently only isotropic scaling supported)
 
         Returns
         -------
-        torch.Tensor
+        :class:`torch.Tensor`
             3D transformation matrix
 
         """
@@ -315,7 +335,7 @@ if __name__ == '__main__':
     scale_params_2d = torch.rand(10, 1, 1, 1)
 
     print("Creating Python Layer")
-    layer_2d_py = _HomogenousTransformationLayerPy(n_dims=2)
+    layer_2d_py = _HomogeneousTransformationLayerPy(n_dims=2)
 
 
     result_2d_py = layer_2d_py(shapes_2d, rotation_params_2d, translation_params_2d,
@@ -327,7 +347,7 @@ if __name__ == '__main__':
     # translation_params_3d = torch.zeros(10, 3, 1, 1)
     scale_params_3d = torch.rand(10, 3, 1, 1)
 
-    layer_3d_py = _HomogenousTransformationLayerPy(n_dims=3)
+    layer_3d_py = _HomogeneousTransformationLayerPy(n_dims=3)
     result_3d_py = layer_3d_py(shapes_3d, rotation_params_3d, translation_params_3d,
                                scale_params_3d)
 
