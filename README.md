@@ -1,5 +1,7 @@
 # shapenet
 
+[![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet)
+
 This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper](#our-paper).
 
 ## Contents
