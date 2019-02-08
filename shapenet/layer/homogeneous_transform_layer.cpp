@@ -114,9 +114,10 @@ at::Tensor forward_homogeneous_layer(at::Tensor shapes,
 
     auto homogen_shapes = at::cat({shapes, at::ones({shapes.size(0), shapes.size(1), 1}, shapes.options())}, -1);
     
-    return at::bmm(homogen_shapes, trafo_matrix.permute({0, 2, 1})).narrow(-1, 0, homogen_shapes.size(-1) - 1);
-}
+    auto transformed_shapes = at::bmm(homogen_shapes, trafo_matrix.permute({0, 2, 1}));
 
+    return transformed_shapes.narrow(-1, 0, homogen_shapes.size(-1) - 1).div(transformed_shapes.narrow(-1, -1, 1));
+}
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     m.def("forward", &forward_homogeneous_layer, "Homogeneous Transformation forward");
 }
