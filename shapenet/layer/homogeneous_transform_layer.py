@@ -216,7 +216,7 @@ class _HomogeneousTransformationLayerPy(torch.nn.Module):
         transformed_shapes = torch.bmm(homogen_shapes,
                                        trafo_matrix.permute(0, 2, 1))
 
-        transformed_shapes = transformed_shaped[..., :-1]
+        transformed_shapes = transformed_shapes[..., :-1]
         # transformed_shapes = transformed_shapes[..., :-1] / transformed_shapes[..., -1].unsqueeze(-1)
         
         return transformed_shapes
