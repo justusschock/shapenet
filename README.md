@@ -1,6 +1,6 @@
 # shapenet
 
-[![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet) [![Documentation Status](https://readthedocs.org/projects/shapenet/badge/?version=latest)](https://shapenet.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/gh/justusschock/shapenet/branch/master/graph/badge.svg?token=gpwVgQjw18)](https://codecov.io/gh/justusschock/shapenet) ![LICENSE](https://img.shields.io/github/license/justusschock/shapedata.svg)
+[![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet) [![Documentation Status](https://readthedocs.org/projects/shapenet/badge/?version=latest)](https://shapenet.readthedocs.io/en/latest/?badge=latest) [![PyPI version](https://badge.fury.io/py/shapenet.svg)](https://badge.fury.io/py/shapenet) [![codecov](https://codecov.io/gh/justusschock/shapenet/branch/master/graph/badge.svg?token=gpwVgQjw18)](https://codecov.io/gh/justusschock/shapenet) ![LICENSE](https://img.shields.io/github/license/justusschock/shapedata.svg)
 
 This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper "SUPER-REALTIME FACIAL LANDMARK DETECTION AND SHAPE FITTING BY DEEP REGRESSION OF SHAPE MODEL PARAMETERS"](#our-paper).
 
