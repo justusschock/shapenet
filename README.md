@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/justusschock/shapenet.svg?token=GsT2RFaJJMxpqLAN3xuh&branch=master)](https://travis-ci.com/justusschock/shapenet) [![codecov](https://codecov.io/gh/justusschock/shapenet/branch/master/graph/badge.svg?token=gpwVgQjw18)](https://codecov.io/gh/justusschock/shapenet) ![LICENSE](https://img.shields.io/github/license/justusschock/shapedata.svg)
 
-This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper](#our-paper).
+This repository contains the [PyTorch](https://pytorch.org) implementation of [our Paper "SUPER-REALTIME FACIAL LANDMARK DETECTION AND SHAPE FITTING BY DEEP REGRESSION OF SHAPE MODEL PARAMETERS"](#our-paper).
 
 ## Contents
 * [Installation](#installation)
@@ -13,7 +13,12 @@ This repository contains the [PyTorch](https://pytorch.org) implementation of [o
  * [Our Paper](#our-paper)
 
 ## Installation
-Currently only the installation from source is supported, which can be done by `pip install git+https://github.com/justusschock/shapenet` 
+
+### From Binary:
+`pip install shapenet`
+
+### From Source:
+`pip install git+https://github.com/justusschock/shapenet` 
 
 ## Usage
 ### By Scripts
@@ -63,4 +68,12 @@ For these Networks the image size is fixed to 224 and the pretrained weights can
 
 ## Our Paper
 If you use our Code for your own research, please cite our paper:
-**Coming Soon**
+```
+@article{Kopaczka2019,
+title = {Super-Realtime Facial Landmark Detection and Shape Fitting by Deep Regression of Shape Model Parameters},
+author = {Marcin Kopaczka and Justus Schock and Dorit Merhof},
+year = {2019},
+journal = {arXiV preprint}
+}
+```
+A link to the PDF will be given as soon, as the preprint is online available.
