@@ -76,4 +76,4 @@ year = {2019},
 journal = {arXiV preprint}
 }
 ```
-A link to the PDF will be given as soon, as the preprint is online available.
+The Paper is available as [PDF on arXiv](https://arxiv.org/abs/1902.03459).
