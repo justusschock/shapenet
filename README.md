@@ -32,7 +32,7 @@ To get a list of the necessary and accepted arguments, run the script with the `
 * `prepare_lfpw_dset`: Preprocesses an already downloaded ZIP file of the [LFPW Dataset](https://neerajkumar.org/databases/lfpw/) (Download is recommended from [here](https://ibug.doc.ic.ac.uk/download/annotations/lfpw.zip) since this already contains the landmarks)
 
 #### Training
-* `train_shapenet`: Trains the shapenet with the configuration specified in an extra configuration file (exemplaric configuration for all avaliable datasets are provided in the [example_configs](example_configs) folder)
+* `train_shapenet`: Trains the shapenet with the configuration specified in an extra configuration file (exemplaric configuration for all available datasets are provided in the [example_configs](example_configs) folder)
 
 #### Prediction
 * `predict_from_net`: Predicts all images in a given directory (assumes existing groundtruths for cropping, otherwise the cropping to groundtruth could be replaced by a detector)
