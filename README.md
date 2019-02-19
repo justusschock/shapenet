@@ -22,7 +22,7 @@ This repository contains the [PyTorch](https://pytorch.org) implementation of [o
 `pip install git+https://github.com/justusschock/shapenet` 
 
 ## Demo
-Demonstration Videos comparing our method to [`dlib`](https://dlib.net) can be found [here as overlay](https://drive.google.com/file/d/1hLaNuWy8eC3xs9qcTRzVZfBjdlB7xZ8c/view?usp=sharing) and [here as side-by-side view](https://drive.google.com/file/d/128ZnFSOAhKnhN7xpgi6FR5KircnwIxca/view?usp=sharing)
+Demonstration Videos comparing our method to [`dlib`](https://dlib.net) can be found [here as overlay](https://imgur.com/gallery/mbSi425) and [here as side-by-side view](https://drive.google.com/file/d/128ZnFSOAhKnhN7xpgi6FR5KircnwIxca/view?usp=sharing)
 
 ## Usage
 ### By Scripts
