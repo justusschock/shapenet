@@ -117,7 +117,7 @@ def predict():
 
             _data = SingleShapeSingleImage2D.from_files(file)
 
-            pred = process_sample(_data, img_size=net.img_size, net=net,
+            pred = process_sample(_data, img_size=config_dict["data"]["img_size"], net=net,
                                   device=device)
 
             fname = os.path.split(_data.img_file)[-1].rsplit(".", 1)[0]
