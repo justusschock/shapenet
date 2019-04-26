@@ -1,4 +1,4 @@
-delira[torch]
+delira[torch]<=0.3.1
 shapedata
 ninja
 kaggle
