@@ -55,7 +55,7 @@ def predict():
             img_size=config_dict["data"]["img_size"],
             **config_dict["network"])
 
-        state = torch.load(os.path.abspath(args.weight_file)
+        state = torch.load(os.path.abspath(args.weight_file))
         try:
             net.load_state_dict(state["state_dict"]["model"])
         except KeyError:
