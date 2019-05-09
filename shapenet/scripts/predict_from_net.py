@@ -55,11 +55,14 @@ def predict():
             img_size=config_dict["data"]["img_size"],
             **config_dict["network"])
 
+        state = torch.load(os.path.abspath(args.weight_file)
         try:
-            net.load_state_dict(torch.load(
-                os.path.abspath(args.weight_file))["state_dict"]["model"])
+            net.load_state_dict(state["state_dict"]["model"])
         except KeyError:
-            net.load_state_dict(torch.load(os.path.abspath(args.weight_file)))
+            try:
+                net.load_state_dict(state["model"])
+            except KeyError:
+                net.load_state_dict(state)
 
         net = net.to("cpu")
         net = net.eval()
