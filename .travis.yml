@@ -15,6 +15,7 @@ before_install:
   - pip install -U pip wheel
   - pip install -r requirements.txt
   - pip install codecov
+  - pip install pytest-cov
 
 install:
   - pip install .
