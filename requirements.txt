@@ -1,5 +1,5 @@
-delira[torch]<=0.3.1
-shapedata
+delira[torch]>=0.4.1
+shapedata>=0.2.0
 ninja
 kaggle
 pandas

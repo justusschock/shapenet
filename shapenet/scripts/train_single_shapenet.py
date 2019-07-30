@@ -26,6 +26,7 @@ def train_shapenet():
         SequentialSampler
     import os
     import argparse
+    from sklearn.metrics import mean_squared_error
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--config", type=str,
                         help="Path to configuration file")
@@ -62,12 +63,14 @@ def train_shapenet():
         config_dict["training"]["save_path"])
 
     trainer = PyTorchNetworkTrainer(
-        net, criterions=criterions, metrics=metrics,
+        net, losses=criterions, train_metrics=metrics,
+        val_metrics={"MSE": mean_squared_error},
         lr_scheduler_cls=ReduceLROnPlateauCallbackPyTorch,
         lr_scheduler_params=config_dict["scheduler"],
         optimizer_cls=torch.optim.Adam,
         optimizer_params=config_dict["optimizer"],
         mixed_precision=mixed_prec,
+        key_mapping={"input_images": "data"},
         **config_dict["training"])
 
     if args.verbose:

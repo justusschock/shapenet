@@ -1,7 +1,6 @@
 import kaggle
 import os
 import zipfile
-import glob
 from shapedata.io import pts_exporter
 import shutil
 import pandas as pd

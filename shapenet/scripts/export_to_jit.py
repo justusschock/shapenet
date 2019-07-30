@@ -38,17 +38,16 @@ def create_jit_net_from_config_and_weight(config_dict, weight_file):
                               config_dict["data"]["img_size"]
                               )
 
+    state = torch.load(weight_file, map_location="cpu")
     try:
-        net.load_state_dict(
-            torch.load(weight_file,
-                       map_location="cpu")["state_dict"]["model"]
-        )
-    except:
-        net.load_state_dict(
-            torch.load(weight_file, map_location="cpu")
-        )
-
-    traced = torch.jit.trace(net, (input_tensor))
+        state = state["state_dict"]["model"]
+    except KeyError:
+        try:
+            state = state["model"]
+        except KeyError:
+            pass
+    net.load_state_dict(state)
+    traced = torch.jit.trace(net, (input_tensor,))
 
     return traced
 

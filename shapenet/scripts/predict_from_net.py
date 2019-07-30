@@ -76,27 +76,53 @@ def predict():
         range_x = max_x - min_x
         range_y = max_y - min_y
 
-        max_range = max(range_x, range_y) * (1 + crop)
-
         center_x = min_x + range_x / 2
         center_y = min_y + range_y / 2
 
-        tmp = sample.crop(center_y - max_range / 2,
-                        center_x - max_range / 2,
-                        center_y + max_range / 2,
-                        center_x + max_range / 2)
+        max_range = np.floor(max(range_x, range_y) * (1 + crop))
 
+        tmp = sample.crop(center_y - max_range / 2,
+                          center_x - max_range / 2,
+                          center_y + max_range / 2,
+                          center_x + max_range / 2)
+
+        max_range += 1
+
+        crop_range_x = tmp.img.shape[1]
+        crop_range_y = tmp.img.shape[0]
+        colour_channels = tmp.img.shape[2]
+
+        # zero padding
+        if max_range - crop_range_x != 0:
+            img_temp = np.zeros((int(round(crop_range_y)),
+                                 int(round(max_range - crop_range_x)),
+                                 colour_channels))
+
+            tmp.img = np.concatenate((tmp.img, img_temp), axis=1)
+
+        # zero padding
+        if max_range - crop_range_y != 0:
+            img_temp = np.zeros((int(round(max_range - crop_range_y)),
+                                 int(round(max_range)),
+                                 colour_channels))
+
+            tmp.img = np.concatenate((tmp.img, img_temp), axis=0)
+
+        # convert to torch tensor
         img_tensor = torch.from_numpy(
             tmp.to_grayscale().resize((img_size, img_size)).img.transpose(2, 0,
                                                                           1)
         ).to(torch.float).unsqueeze(0).to(device)
 
+        # obtain prediction
         pred = net(img_tensor).cpu().numpy()[0]
-        
-        pred = pred * np.array([max_range / img_size, max_range / img_size])
-        pred = pred + np.asarray([center_y - max_range / 2,
-                                center_x - max_range / 2])
 
+        # remap to original image
+        pred = pred * np.array([max_range / img_size, max_range / img_size])
+        img_add_bound_x = max(center_x - max_range / 2, 0)
+        img_add_bound_y = max(center_y - max_range / 2, 0)
+        pred = pred + np.asarray([img_add_bound_y,
+                                  img_add_bound_x])
         return pred
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
