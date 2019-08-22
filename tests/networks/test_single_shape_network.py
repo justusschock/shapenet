@@ -36,7 +36,7 @@ def test_single_shapenet(feature_extractor, num_params, in_channels, norm_type,
 
     input_tensor = torch.rand(10, in_channels, img_size, img_size)
 
-    result = net(input_tensor)
+    result = net(input_tensor)["pred"]
 
     assert result.shape == (10, 16, 2)
 
