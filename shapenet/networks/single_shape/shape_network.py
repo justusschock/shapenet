@@ -147,8 +147,8 @@ class ShapeNetwork(AbstractShapeNetwork):
 
         features = self._model(input_images)
 
-        return self._out_layer(features.view(input_images.size(0),
-                                             self.num_out_params, 1, 1))
+        return {"pred": self._out_layer(features.view(input_images.size(0),
+                                             self.num_out_params, 1, 1))}
 
     @property
     def model(self):
@@ -224,14 +224,14 @@ class ShapeNetwork(AbstractShapeNetwork):
             if data_dict:
 
                 for key, crit_fn in criterions.items():
-                    _loss_val = crit_fn(preds, *data_dict.values())
+                    _loss_val = crit_fn(preds["pred"], *data_dict.values())
                     loss_vals[key] = _loss_val.detach()
                     total_loss += _loss_val
 
                 with torch.no_grad():
                     for key, metric_fn in metrics.items():
                         metric_vals[key] = metric_fn(
-                            preds, *data_dict.values())
+                            preds["pred"], *data_dict.values())
 
         if optimizers:
             optimizers['default'].zero_grad()
@@ -256,4 +256,5 @@ class ShapeNetwork(AbstractShapeNetwork):
                                     "env_appendix": "_%02d" % fold
                                     }})
 
-        return metric_vals, loss_vals, [preds]
+        return metric_vals, loss_vals, {k: v.detach() 
+                                        for k, v in preds.items()}
