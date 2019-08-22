@@ -115,7 +115,7 @@ def predict():
         ).to(torch.float).unsqueeze(0).to(device)
 
         # obtain prediction
-        pred = net(img_tensor).cpu().numpy()[0]
+        pred = net(img_tensor).cpu().numpy()["pred"][0]
 
         # remap to original image
         pred = pred * np.array([max_range / img_size, max_range / img_size])
