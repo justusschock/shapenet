@@ -56,6 +56,12 @@ def train_shapenet():
 
     criterions = {"L1": torch.nn.L1Loss()}
     metrics = {"MSE": torch.nn.MSELoss()}
+    
+    def numpy_mse(pred, target):
+        pred = pred.reshape(pred.shape[0], -1)
+        target = target.reshape(target.shape[0], -1)
+        
+        return mean_square_error(target, pred)
 
     mixed_prec = config_dict["training"].pop("mixed_prec", False)
 
@@ -64,7 +70,7 @@ def train_shapenet():
 
     trainer = PyTorchNetworkTrainer(
         net, losses=criterions, train_metrics=metrics,
-        val_metrics={"MSE": mean_squared_error},
+        val_metrics={"MSE": numpy_mse},
         lr_scheduler_cls=ReduceLROnPlateauCallbackPyTorch,
         lr_scheduler_params=config_dict["scheduler"],
         optimizer_cls=torch.optim.Adam,
@@ -141,4 +147,6 @@ def train_shapenet():
 
 
 if __name__ == '__main__':
+    from multiprocessing import freeze_support
+    freeze_support()
     train_shapenet()
