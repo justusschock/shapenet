@@ -201,6 +201,9 @@ class ShapeNetwork(AbstractShapeNetwork):
             if optimizers or criterions are empty or the optimizers are not
             specified
         """
+        
+        if not criterions:
+            criterions = kwargs.pop('losses', {})
 
         assert (optimizers and criterions) or not optimizers, \
             "Criterion dict cannot be emtpy, if optimizers are passed"
@@ -255,6 +258,14 @@ class ShapeNetwork(AbstractShapeNetwork):
             logging.info({"value": {"value": val.item(), "name": key,
                                     "env_appendix": "_%02d" % fold
                                     }})
+            
+        for key, val in metric_vals.items():
+            if isinstance(val, torch.Tensor):
+                metric_vals[key] = val.detach().cpu().numpy()
+                
+        for key, val in loss_vals.items():
+            if isinstance(val, torch.Tensor):
+                loss_vals[key] = val.detach().cpu().numpy()
 
         return metric_vals, loss_vals, {k: v.detach() 
                                         for k, v in preds.items()}
