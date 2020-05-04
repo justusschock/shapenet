@@ -61,7 +61,7 @@ def train_shapenet():
         pred = pred.reshape(pred.shape[0], -1)
         target = target.reshape(target.shape[0], -1)
         
-        return mean_square_error(target, pred)
+        return mean_squared_error(target, pred)
 
     mixed_prec = config_dict["training"].pop("mixed_prec", False)
 
